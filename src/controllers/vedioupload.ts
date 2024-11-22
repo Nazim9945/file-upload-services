@@ -6,10 +6,17 @@ export const vedioupload = async (req: Request, res: Response) => {
   try {
     const { name, tag, email } = req.body;
     const file = req.files?.vediofile as UploadedFile;
+     const format = ["mp4", "mov"];
+     let fileformat = file.name.split(".").at(-1) || "";
+     if (!format.includes(fileformat)) {
+       return res.status(404).json({
+         message: `${fileformat} format is not supported`,
+       });
+     }
     const results = await cloudinary.uploader.upload(file.tempFilePath, {
       folder: "my-new-test-folder",
-      display_name: "firstvedio",
-      resource_type:"auto"
+      display_name: "vedio" + Math.floor(Math.random() * 100).toString(),
+      resource_type: "auto",
     });
     console.log(results);
 
