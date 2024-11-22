@@ -1,6 +1,8 @@
 import express from 'express'
 import fileUpload from 'express-fileupload';
 import uploadroute from './routes'
+import { cloudinaryconnect } from './config/cloudinary';
+import dbconnect from './config/dbconnect';
 import dotenv from 'dotenv';
 dotenv.config()
 const app=express();
@@ -14,4 +16,6 @@ app.use(
   })
 );
 app.use('/api/v1',uploadroute)
+dbconnect()
+cloudinaryconnect()
 app.listen(PORT,()=>console.log("working fine at port ",PORT))
