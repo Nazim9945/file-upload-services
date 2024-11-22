@@ -21,7 +21,7 @@ export const imageupload=async(req:Request,res:Response)=>{
          file.tempFilePath,
          options
         );
-        console.log(results);
+        // console.log(results);
 
     if(!results){
 
@@ -30,7 +30,7 @@ export const imageupload=async(req:Request,res:Response)=>{
             });
     }
     const newdata=await fileschema.create({name,tag,email,imageUrl:results.secure_url})
-    console.log(newdata);
+    // console.log(newdata);
     return res.status(200).json({
         messgae:"successfully uploaded on cloudinary"
     })

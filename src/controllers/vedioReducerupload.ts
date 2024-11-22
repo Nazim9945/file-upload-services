@@ -13,6 +13,7 @@ export const vedioReducerupload = async (req: Request, res: Response) => {
         message: `${fileformat} format is not supported`,
       });
     }
+    //size limit is 20MB
     if(file.size>20*1000*1000){
         return res.status(403).json({
             message:`${file.size/1000000} MB too large file`
